@@ -1,6 +1,7 @@
 # CS_STUDY_REPO
 ---
 https://gyoogle.dev/blog/
+https://github.com/JaeYeopHan/Interview_Question_for_Beginner
 
 # 스터디 계획
 - 10.31 ~ 11.05 : DB
