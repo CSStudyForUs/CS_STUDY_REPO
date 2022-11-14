@@ -72,83 +72,6 @@
     다른 릴레이션의 기본키를 참조하는 속성의 집합
     
 
-# Join
-
----
-
-> 두 개 이상의 테이블이나 DB를 연결하여 데이터를 검색하는 방법
-> 
-
-- **INNER JOIN**
-    
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b57d8f2b-8959-4f2a-8519-0e7b810c42ec/Untitled.png)
-    
-    ```abap
-    SELECT
-    A.NAME, B.AGE
-    FROM EX_TABLE A
-    INNER JOIN JOIN_TABLE B ON A.NO_EMP = B.NO_EMP
-    ```
-    
-
-- **LEFT OUTER JOIN**
-    
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/29786535-2f29-4943-83e7-39753b48d9b1/Untitled.png)
-    
-    ```abap
-    SELECT
-    A.NAME, B.AGE
-    FROM EX_TABLE A
-    LEFT OUTER JOIN JOIN_TABLE B ON A.NO_EMP = B.NO_EMP
-    ```
-    
-
-- **RIGHT OUTER JOIN**
-    
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/230bf0a5-6fd5-4d92-95e6-2b741ed69b88/Untitled.png)
-    
-    ```abap
-    SELECT
-    A.NAME, B.AGE
-    FROM EX_TABLE A
-    RIGHT OUTER JOIN JOIN_TABLE B ON A.NO_EMP = B.NO_EMP
-    ```
-    
-- **FULL OUTER JOIN**
-    
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/32f9abaa-b963-4794-af1d-c535bba13be6/Untitled.png)
-    
-    ```abap
-    SELECT
-    A.NAME, B.AGE
-    FROM EX_TABLE A
-    FULL OUTER JOIN JOIN_TABLE B ON A.NO_EMP = B.NO_EMP
-    ```
-    
-
-- **CROSS JOIN**
-    
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/802485de-1cbf-41fa-a7af-1c87dd649344/Untitled.png)
-    
-    ```abap
-    SELECT
-    A.NAME, B.AGE
-    FROM EX_TABLE A
-    CROSS JOIN JOIN_TABLE B
-    ```
-    
-
-- **SELF JOIN**
-    
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ba6b3808-fe11-4070-a0b0-8977a961f1b9/Untitled.png)
-    
-    ```abap
-    SELECT
-    A.NAME, B.AGE
-    FROM EX_TABLE A, EX_TABLE B
-    ```
-    
-
 # Index
 
 ---
@@ -184,10 +107,6 @@
     
     데이터가 정렬되어 저장되므로, 범위를 이용해 질의 하는 것에 유리하다.
     
-    ![[https://gwang920.github.io/database/clusterednonclustered/](https://gwang920.github.io/database/clusterednonclustered/)](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a05f2a72-2c07-4ac2-b7c1-8c17f364a4df/Untitled.png)
-    
-    [https://gwang920.github.io/database/clusterednonclustered/](https://gwang920.github.io/database/clusterednonclustered/)
-    
 
 1. 행 데이터를 정렬한 후에 루트 페이지를 생성한다.
 2. Root 페이지는 Leaf 페이지의 주소로 구성하고, Leaf 페이지는 실제 데이터 페이지로 구성된다.
@@ -207,20 +126,10 @@
     
     index는 모든 레코드에 대한 색인 데이터를 가지고 있어야 하기 때문에 update, delete, insert 시 오래 걸릴 수 있고 clustered index에 비해 더 많은 공간을 차지하게 된다.
     
-    ![[https://gwang920.github.io/database/clusterednonclustered/](https://gwang920.github.io/database/clusterednonclustered/)](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/cc33f5c2-1935-48a3-bbe0-b4e1222488de/Untitled.png)
-    
-    [https://gwang920.github.io/database/clusterednonclustered/](https://gwang920.github.io/database/clusterednonclustered/)
-    
     1. Index로 구성한 열을 정렬한 후 위치 포인터를 생성한다. (키값 - 데이터)
     2. 데이터 페이지는 그냥 둔 상태에서 별도의 인덱스 페이지를 따로 만든다.
     3. 루트 페이지 → 리프 페이지 → 데이터 페이지
     4. 검색 속도는 느리지만 페이지 분할이 적게 일어나 입력, 수정, 삭제가 빠르다.
-
-- **장단점 비교**
-    
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8916a44b-0624-40eb-bc8e-b18736a979a7/Untitled.png)
-    
-    [https://velog.io/@sweet_sumin/클러스터드-인덱스-Clustered-Index-넌-클러스터드-인덱스-Non-Clustered-Index](https://velog.io/@sweet_sumin/%ED%81%B4%EB%9F%AC%EC%8A%A4%ED%84%B0%EB%93%9C-%EC%9D%B8%EB%8D%B1%EC%8A%A4-Clustered-Index-%EB%84%8C-%ED%81%B4%EB%9F%AC%EC%8A%A4%ED%84%B0%EB%93%9C-%EC%9D%B8%EB%8D%B1%EC%8A%A4-Non-Clustered-Index)
     
 
 - **Index의 성능에서 고려해야 할 사항**
@@ -241,57 +150,6 @@
     1. 삽입 이상: 튜플 삽입 시 특정 속성에 해당하는 값이 없어 NULL이 입력된다.
     2. 삭제 이상: 하나의 자료를 삭제할 때 원치 않는 정보 손실이 발생할 수 있다.
     3. 수정 이상: 일부 튜플만 갱신되어 데이터가 불일치한다.
-
-## 제 1 정규형 (원자값)
-
----
-
-1. 각 컬럼이 하나의 속성을 가져야 한다.
-2. 하나의 컬럼은 같은 종류나 타입이어야 하며, 유일해야 한다.
-3. 컬럼의 순서가 상관 없어야 한다.
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e90a2276-169e-4f2d-9236-a6961354125f/Untitled.png)
-
-(정규화 전)
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/598be29a-5808-47d7-8cb2-fedc0a8849db/Untitled.png)
-
-(정규화 후) → 하나의 컬럼이 두 개의 값을 가지고 있는 것을 방지.
-
-## 제 2정규형 (부분 종속 제거)
-
----
-
-모든 컬럼이 완전 함수 종속을 만족해야 한다.
-
-⇒ 기본 키의 부분 집합이 결정자가 되어서는 안된다.
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a8ccf1bc-7b07-4af8-adae-2cb2fbb8c41f/Untitled.png)
-
-기본 키가 (학생번호 + 과목) 일 때 지도 교수는 기본키의 부분 집합인 과목에 완전히 종속된다. 
-
-## 제 3정규형 (이행 종속 제거)
-
----
-
-- 기본 키를 제외한 속성들 간의 이행 종속성이 없어야 한다.
-    
-    A → B, B → C 일 때 A → C가 성립하면 이행 종속이라 한다.
-    
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/79c0e95a-0c2c-47bd-be18-9ad0f6033d38/Untitled.png)
-    
-
-## BCNF (Boyce-Codd Normal Form)
-
----
-
-- 모든 결정자가 후보키 집합에 속해야 한다.
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b975a186-03dc-4b78-aa3d-c183b2e0796f/Untitled.png)
-
-기본키는 학생번호 + 과목이다.
-
-같은 과목을 다른 교수가 가르칠 수도 있기 때문에 과목 → 지도교수 종속은 성립하지 않으나 지도교수가 가르치는 과목이 정해져 있다면 지도교수 → 과목의 종속은 성립한다. 이 때 지도교수는 후보키 집합이 아니기 때문에 BCNF를 만족하지 않는다.
 
 ---
 
@@ -346,19 +204,11 @@
     트랜잭션이 비정상적으로 종료되었을 때 지금까지 실행한 연산의 결과가 취소되고, 트랜잭션 수행 이전의 상태로 돌아간다.
     
 
-![[https://rebro.kr/162](https://rebro.kr/162)](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4cca0243-5d2e-4ef6-be01-ff258eb514c4/Untitled.png)
-
-[https://rebro.kr/162](https://rebro.kr/162)
-
 ### 상태
 
 ---
 
 트랜잭션에 5가지의 상태가 존재한다.
-
-![[https://rebro.kr/162](https://rebro.kr/162)](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5231e7be-9820-4f2c-9efe-7edcb61e7844/Untitled.png)
-
-[https://rebro.kr/162](https://rebro.kr/162)
 
 1. 활성화 (Active): 트랜잭션이 작업을 하는 상태
 2. 실패 (Failed): 오류가 발생해 실행이 중단된 상태
@@ -387,10 +237,6 @@
 
 ⇒ WAS에서 미리 일정한 수의 커넥션을 만들고 필요한 시점에 애플리케이션에 제공하는 서비스 및 관리 체계를 **데이터베이스 커넥션 풀**이라고 한다.
 
-![*http://devbox.tistory.com/entry/JSP-커넥션-풀-1*](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/db28ab1b-be04-4a5a-9725-aa8781c6aef5/Untitled.png)
-
-*http://devbox.tistory.com/entry/JSP-커넥션-풀-1*
-
 1. WAS가 시작될 때 일정 수의 커넥션을 미리 생성해 풀을 구성한다.
 2. Request에 따라 생성된 커넥션 객체를 전달한다.
 3. 일정 수 이상의 커넥션이 사용되면 새로운 커넥션을 만든다.
@@ -408,8 +254,6 @@
 트랜잭션이 DB를 다루는 동안 다른 트랜잭션이 관여하지 못하도록 하는 Locking의 범위를 줄여야 성능을 유지할 수 있다.
 
 - **종류**
-    
-    [https://joont92.github.io/db/트랜잭션-격리-수준-isolation-level/](https://joont92.github.io/db/%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98-%EA%B2%A9%EB%A6%AC-%EC%88%98%EC%A4%80-isolation-level/)
     
     1. **Read Uncommitted**
         
@@ -453,8 +297,6 @@
 # Statement vs PreparedStatement
 
 ---
-
-[https://webstone.tistory.com/56](https://webstone.tistory.com/56)
 
 - **Statement의 동작 과정**
     1. SQL문의 틀을 만들고 DBMS로 전송한다.
